@@ -31,16 +31,14 @@
   
 <nav id="jPanelMenu-menu">
 	<ul>	
-		<li><a href="javasctip:;" onclick="newCodeFile()"><i class="icon-plus fs-16"></i>New File</a></li>			
-		<li><a href="javasctip:;" onclick="showFileList()"><i class="icon-arrows-ccw fs-16"></i>Files</a></li>			
+		<li><a href="javasctipt:;" onclick="newCodeFile()"><i class="icon-plus fs-16"></i>New File</a></li>			
+		<li><a href="javasctipt:;" onclick="showFileList()"><i class="icon-arrows-ccw fs-16"></i>Files</a></li>			
 		<li><a href="javascript:;" onclick="showLangList()"><i class="icon-arrows-ccw fs-16"></i>Language</a></li>
-		<li><a href="#usage"><i class="icon-arrows-ccw fs-16"></i>Sync</a></li>
+		<li><a href="javascript:;" onclick="syncCodeFile()"><i class="icon-arrows-ccw fs-16"></i>Sync</a></li>
 		<li><a href="javascript:;" onclick="window.log_out()"><i class="icon-logout fs-16"></i>Logout</a></li>
 	</ul>
 </nav>
   
-  
-
 <header class="bar-title">
 	<a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
   		<i class="icon-menu fs-25" ></i> 
@@ -56,8 +54,6 @@
 </header>
 
 
-
-<!-- Wrap all non-bar HTML in the .content div (this is actually what scrolls) -->
 <div id="main-content" class="content">
 	<textarea id="code-editor">console.log("Hello World!);</textarea>
 </div>
@@ -134,7 +130,6 @@ $(function(){
 	      }
 	});	
 
-
 	codeMirror = CodeMirror.fromTextArea(document.getElementById('code-editor'), codeEditorConfig);
 });
 
@@ -142,7 +137,6 @@ sync_object = {
 	"GDrive": { 
 	  "key": "{ app key }", 
 	  "scope": "https://www.googleapis.com/auth/drive", 
-
 	  "app_name": "{ app name }" 
 	}, 	
 	"Dropbox": {
@@ -214,8 +208,6 @@ function showLangList()
 
 	$('.modal').removeClass('active');
 	$('#chooseLangModal').addClass('active');
-
-
 }
 
 function chooseLang(lang)
@@ -226,12 +218,10 @@ function chooseLang(lang)
 	$('.modal').removeClass('active');	
 }
 
-
-
-
-function getTime()
+function syncCodeFile()
 {
-	return Math.round(new Date().getTime()/1000);
+	CodeFile.sync_all();
+	toggleMenuPanel();
 }
 
 function saveFile()
@@ -253,7 +243,7 @@ function saveFile()
 function AddCodeFile(id, name, content, lang)
 {
 	if (id == 0) id = CodeFile.count() + 1;
-	var created = getTime();
+	var created = Math.round(new Date().getTime()/1000);
 	var updated = created;
 	var name = name;
 	var content = content;
@@ -273,7 +263,6 @@ function AddCodeFile(id, name, content, lang)
 function DeleteCodeFile(id)
 {
 	CodeFile.find(id).destroy();
-
 	CodeFile.sync_all();
 }
 

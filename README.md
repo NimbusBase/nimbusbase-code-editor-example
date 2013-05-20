@@ -1,4 +1,4 @@
 NimbusBase-webapp-demo
 ======================
 
-a demo built on NimbusBase
+A small HTML5 code edtior built on NimbusBase
