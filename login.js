@@ -2,7 +2,7 @@
 (function() {
 
   $(function() {
-    new FastClick(document.body);
+    
     return Nimbus.Auth.set_app_ready(function() {
       console.log("app ready called");
       if (Nimbus.Auth.authorized()) {
