@@ -75,18 +75,18 @@
 	height: 100%;
 }
 
-#login-modal .content {
+#loginModal .content {
 	background-image: url('../images/back.png'); 
 	background-size: cover; 
 	background-position: center center;	
 }
-#login-modal .bg {
+#loginModal .bg {
 	position: absolute; 
 	top: 50px; 
 	width: 94%; 
 	padding: 3%;	
 }
-#login-modal .action {
+#loginModal .action {
 	position: absolute; 
 	bottom: 0px; 
 	width: 94%; 

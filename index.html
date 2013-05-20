@@ -30,86 +30,88 @@
 <body>
   
 <nav id="jPanelMenu-menu">
-	<ul>	
-		<li><a href="javasctipt:;" onclick="newCodeFile()"><i class="icon-plus fs-16"></i>New File</a></li>			
-		<li><a href="javasctipt:;" onclick="showFileList()"><i class="icon-arrows-ccw fs-16"></i>Files</a></li>			
-		<li><a href="javascript:;" onclick="showLangList()"><i class="icon-arrows-ccw fs-16"></i>Language</a></li>
-		<li><a href="javascript:;" onclick="syncCodeFile()"><i class="icon-arrows-ccw fs-16"></i>Sync</a></li>
-		<li><a href="javascript:;" onclick="window.log_out()"><i class="icon-logout fs-16"></i>Logout</a></li>
-	</ul>
+    <ul>    
+        <li><a href="javasctipt:;" onclick="newCodeFile()"><i class="icon-plus fs-16"></i>New File</a></li> 
+        <li><a href="javasctipt:;" onclick="showFileList()"><i class="icon-star fs-16"></i>Files</a></li>     
+        <li><a href="javascript:;" onclick="showLangList()"><i class="icon-star fs-16"></i>Language</a></li>
+        <li><a href="javascript:;" onclick="syncCodeFile()"><i class="icon-arrows-ccw fs-16"></i>Sync</a></li>
+        <li><a href="javascript:;" onclick="logout()"><i class="icon-logout fs-16"></i>Logout</a></li>
+    </ul>
 </nav>
   
 <header class="bar-title">
-	<a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
-  		<i class="icon-menu fs-25" ></i> 
-  	</a>
-  	<h1 class="title">
-  		<input id="code-title" value="click here to add edit file name" type="text" />
-  		<input id="code-lang" type="hidden" value="javascript" />
-  		<input id="code-id" type="hidden" value="0" />
-  	</h1>
-  	<a class="button pt-5" href="javascript:;" onclick="saveFile();">
-    	<i class="icon-ok fs-25"></i> 
-  	</a>
+    <a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
+        <i class="icon-menu fs-25" ></i> 
+    </a>
+    <h1 class="title">
+        <input id="code-title" value="click here to add edit file name" type="text" />
+        <input id="code-lang" type="hidden" value="javascript" />
+        <input id="code-id" type="hidden" value="0" />
+    </h1>
+    <a class="button pt-5" href="javascript:;" onclick="saveFile();">
+        <i class="icon-ok fs-25"></i> 
+    </a>
 </header>
 
-
+<!-- main content, code editor -->
 <div id="main-content" class="content">
-	<textarea id="code-editor">console.log("Hello World!);</textarea>
+    <textarea id="code-editor">console.log("Hello World!);</textarea>
 </div>
 
+<!-- file list modal -->
 <div id="codeFileListModal" class="modal">
-	<header class="bar-title">
-		<a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
-	  		<i class="icon-menu fs-25" ></i> 
-	  	</a>
-	</header>	
-	<div class="content">	  	
-		<div class="content-padded bg" style="">
-			<ul id="code-file-list" class="list">
-			</ul>
-		</div>	  		
-	</div>		
+    <header class="bar-title">
+        <a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
+            <i class="icon-menu fs-25" ></i> 
+        </a>
+    </header>   
+    <div class="content">       
+        <div class="content-padded bg" style="">
+            <ul id="code-file-list" class="list">
+            </ul>
+        </div>          
+    </div>      
 </div>
 
+<!-- lang list modal -->
 <div id="chooseLangModal" class="modal">
-	<header class="bar-title">
-		<a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
-	  		<i class="icon-menu fs-25" ></i> 
-	  	</a>
-	</header>	
-	<div class="content">	  	
-		<div class="content-padded bg" style="">
-			<ul class="list">
-				<li> <a href="javascript:;" onclick="chooseLang('javascript')">javascript</a></li>;
-				<li> <a href="javascript:;" onclick="chooseLang('css')">css</a></li>;
-				<li> <a href="javascript:;" onclick="chooseLang('less')">less</a></li>;
-				<li> <a href="javascript:;" onclick="chooseLang('erlang')">erlang</a></li>;
-				<li> <a href="javascript:;" onclick="chooseLang('ruby')">ruby</a></li>;
-				<li> <a href="javascript:;" onclick="chooseLang('python')">python</a></li>;
-				<li> <a href="javascript:;" onclick="chooseLang('verilog')">verilog</a></li>;
-			</ul>
-		</div>	  		
-	</div>		
+    <header class="bar-title">
+        <a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
+            <i class="icon-menu fs-25" ></i> 
+        </a>
+    </header>   
+    <div class="content">       
+        <div class="content-padded bg" style="">
+            <ul class="list">
+                <li> <a href="javascript:;" onclick="chooseLang('javascript')">javascript</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('css')">css</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('less')">less</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('erlang')">erlang</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('ruby')">ruby</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('python')">python</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('verilog')">verilog</a></li>
+            </ul>
+        </div>          
+    </div>      
 </div>
-	
 
+<!-- login modal -->
 <div id="loginModal" class="modal active">
-	<div class="content">	  	
-		<div class="content-padded bg" style="">
-			<h1 id="name">Welcome</h1>
-			<img id="powered" src="images/nimbusbase_2_powered_by.png" />
-		</div>	  	
-		<div class="content-padded action">
-			<a class="button-block pt-15" onclick="Nimbus.Auth.authorize('Dropbox')">
-			<img class="s_icon" src="images/dropbox_icon.png" />
-			Login with Dropbox
-			</a>
-		</div>	
-	</div>		
+    <div class="content">       
+        <div class="content-padded bg" style="">
+            <h1 id="name">Welcome</h1>
+            <img id="powered" src="images/nimbusbase_2_powered_by.png" />
+        </div>      
+        <div class="content-padded action">
+            <a class="button-block pt-15" onclick="Nimbus.Auth.authorize('Dropbox')">
+            <img class="s_icon" src="images/dropbox_icon.png" />
+            Login with Dropbox
+            </a>
+        </div>  
+    </div>      
 </div>
 
-  </body>
+</body>
 
 <script type="text/javascript">
 window.debug = true;
@@ -122,151 +124,166 @@ var codeEditorConfig = {
 var codeMirror = null;
 
 $(function(){
-	new FastClick(document.body);
+    new FastClick(document.body);
 
-	Nimbus.Auth.set_app_ready(function() {
-	      if (Nimbus.Auth.authorized()) {
-	       	$("#loginModal").removeClass("active");
-	      }
-	});	
+    Nimbus.Auth.set_app_ready(function() {
+        if (Nimbus.Auth.authorized()) 
+        {
+            $("#loginModal").removeClass("active");
+        }
 
-	codeMirror = CodeMirror.fromTextArea(document.getElementById('code-editor'), codeEditorConfig);
+        CodeFile.sync_all(); 
+    }); 
+
+    codeMirror = CodeMirror.fromTextArea(document.getElementById('code-editor'), codeEditorConfig);
 });
 
 sync_object = {
-	"GDrive": { 
-	  "key": "{ app key }", 
-	  "scope": "https://www.googleapis.com/auth/drive", 
-	  "app_name": "{ app name }" 
-	}, 	
-	"Dropbox": {
-		"key": "8ckiyyrc3893vv9",
-		"secret": "916cnwhouxv7uvx",
-		"app_name": "fature-NimbusBase"
-	}
+    "GDrive": { 
+      "key": "{ app key }", 
+      "scope": "https://www.googleapis.com/auth/drive", 
+      "app_name": "{ app name }" 
+    },  
+    "Dropbox": {
+        "key": "8ckiyyrc3893vv9",
+        "secret": "916cnwhouxv7uvx",
+        "app_name": "fature-NimbusBase"
+    }
 };
 
 Nimbus.Auth.setup(sync_object);
-
 CodeFile =  Nimbus.Model.setup('CodeFile', ['id', 'created', 'updated', 'name', 'lang', 'content']);
-CodeFile.sync_all();
+CodeFile.sync_all(); 
+Nimbus.Auth.authorized_callback = function()
+{    
+    CodeFile.sync_all();   
+}       
 
 function toggleMenuPanel()
 {
-	$('.modal').removeClass('active');
-	toggle_slide();
+    $('.modal').removeClass('active');
+    toggle_slide();
 }
 
 function showFileList()
 {
-	var listHtml = '';
-	var files = CodeFile.all();
-	
-	for (var i in files)
-	{
-		var file = files[i];
-		listHtml += '<li> <a href="javascript:;" onclick="editCodeFile('+ file.id +')">' + file.name + '<span class="chevron"></span></a></li>';
-	}
+    var listHtml = '';
+    var files = CodeFile.all();
+    
+    for (var i in files)
+    {
+        var file = files[i];
+        listHtml += '<li> <a href="javascript:;" onclick="editCodeFile('+ file.id +')">' + file.name + '<span class="chevron"></span></a></li>';
+    }
 
-	$('#code-file-list').html(listHtml);
+    $('#code-file-list').html(listHtml);
 
-	toggleMenuPanel();
+    toggleMenuPanel();
 
-	$('.modal').removeClass('active');
-	$('#codeFileListModal').addClass('active');
+    $('.modal').removeClass('active');
+    $('#codeFileListModal').addClass('active');
 }
 
 function newCodeFile()
 {
-	$('#code-id').val(0);
-	$('#code-title').val('click here to add edit file name');
-	$('#code-lang').val('javascript');	
-	codeMirror.setValue('');
-	codeMirror.setOption('mode', 'javascript')
+    $('#code-id').val(0);
+    $('#code-title').val('click here to add edit file name');
+    $('#code-lang').val('javascript');  
+    codeMirror.setValue('');
+    codeMirror.setOption('mode', 'javascript')
 
-	$('.modal').removeClass('active');	
+    $('.modal').removeClass('active');  
 
-	toggleMenuPanel();
+    toggleMenuPanel();
 }
 
 function editCodeFile(id)
 {
-	var file = CodeFile.find(id);
+    var file = CodeFile.find(id);
 
-	$('#code-id').val(id);
-	$('#code-title').val(file.name);
-	$('#code-lang').val(file.lang);	
-	codeMirror.setValue(file.content);
-	codeMirror.setOption('mode', file.lang)
+    $('#code-id').val(id);
+    $('#code-title').val(file.name);
+    $('#code-lang').val(file.lang); 
+    codeMirror.setValue(file.content);
+    codeMirror.setOption('mode', file.lang)
 
-	$('.modal').removeClass('active');	
+    $('.modal').removeClass('active');  
 }
 
 function showLangList()
 {
-	toggleMenuPanel();
+    toggleMenuPanel();
 
-	$('.modal').removeClass('active');
-	$('#chooseLangModal').addClass('active');
+    $('.modal').removeClass('active');
+    $('#chooseLangModal').addClass('active');
 }
 
 function chooseLang(lang)
 {
-	codeMirror.setOption('mode', lang);
-	$('#code-lang').val(lang);
+    codeMirror.setOption('mode', lang);
+    $('#code-lang').val(lang);
 
-	$('.modal').removeClass('active');	
+    $('.modal').removeClass('active');  
 }
 
 function syncCodeFile()
 {
-	CodeFile.sync_all();
-	toggleMenuPanel();
+    CodeFile.sync_all();
+    toggleMenuPanel();
 }
 
 function saveFile()
 {
-	var fileId = parseInt($('#code-id').val());
-	var title = $('#code-title').val();
-	if (title.length < 1)
-	{
-		alert('Please add a name for your code file :)');
-		return;
-	}
+    var fileId = parseInt($('#code-id').val());
+    var title = $('#code-title').val();
+    if (title.length < 1)
+    {
+        alert('Please add a name for your code file :)');
+        return;
+    }
 
-	var codes = codeMirror.getValue();
-	var lang = $('#code-lang').val();
+    var codes = codeMirror.getValue();
+    var lang = $('#code-lang').val();
 
-	AddCodeFile(fileId, title, codes, lang);
+    AddCodeFile(fileId, title, codes, lang);
 }
 
+// use upper case, model related
 function AddCodeFile(id, name, content, lang)
 {
-	if (id == 0) id = CodeFile.count() + 1;
-	var created = Math.round(new Date().getTime()/1000);
-	var updated = created;
-	var name = name;
-	var content = content;
-	var lang = lang;
-	CodeFile.create({
-		'id' : id,
-		'created' : created,
-		'updated' : updated,
-		'name' : name,
-		'content' : content,
-		'lang' : lang
-	});
+    if (id == 0) id = CodeFile.count() + 1;
+    var created = Math.round(new Date().getTime()/1000);
+    var updated = created;
+    var name = name;
+    var content = content;
+    var lang = lang;
+    CodeFile.create({
+        'id' : id,
+        'created' : created,
+        'updated' : updated,
+        'name' : name,
+        'content' : content,
+        'lang' : lang
+    });
 
-	CodeFile.sync_all();
+    CodeFile.sync_all();
+
+    $('#code-id').val(id);
 }
 
+// use upper case, model related
 function DeleteCodeFile(id)
 {
-	CodeFile.find(id).destroy();
-	CodeFile.sync_all();
+    CodeFile.find(id).destroy();
+    CodeFile.sync_all();
 }
 
-
+function logout()
+{
+    window.localStorage.clear();
+    toggleMenuPanel();
+    $('#loginModal').addClass('active');
+}
 </script>
 
 <script type="text/javascript" src="js/codemirror/mode/javascript/javascript.js"></script>
@@ -276,5 +293,4 @@ function DeleteCodeFile(id)
 <script type="text/javascript" src="js/codemirror/mode/python/python.js"></script>
 <script type="text/javascript" src="js/codemirror/mode/ruby/ruby.js"></script>
 <script type="text/javascript" src="js/codemirror/mode/verilog/verilog.js"></script>
-
 </html>
