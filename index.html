@@ -44,7 +44,7 @@
         <i class="icon-menu fs-25" ></i> 
     </a>
     <h1 class="title">
-        <input id="code-title" value="click here to add edit file name" type="text" />
+        <input id="code-title" value="click here to edit file name" type="text" />
         <input id="code-lang" type="hidden" value="javascript" />
         <input id="code-id" type="hidden" value="0" />
     </h1>
@@ -187,7 +187,7 @@ function showFileList()
 function newCodeFile()
 {
     $('#code-id').val(0);
-    $('#code-title').val('click here to add edit file name');
+    $('#code-title').val('click here to edit file name');
     $('#code-lang').val('javascript');  
     codeMirror.setValue('');
     codeMirror.setOption('mode', 'javascript')
