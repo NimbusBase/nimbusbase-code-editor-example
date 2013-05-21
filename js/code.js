@@ -63,7 +63,7 @@ syncCodeFile = function() {
 saveFile = function() {
   var codes, fileId, lang, title;
 
-  fileId = $('#code-id').val();
+  fileId = '' + $('#code-id').val();
   title = $('#code-title').val();
   if (title.length < 1) {
     alert('Please add a name for your code file :)');
@@ -78,7 +78,7 @@ AddCodeFile = function(id, name, content, lang) {
   var created, file, updated;
 
   updated = Math.round(new Date().getTime() / 1000);
-  if (id === 0) {
+  if (id === '0') {
     created = Math.round(new Date().getTime() / 1000);
     updated = created;
     file = CodeFile.create({
@@ -91,7 +91,6 @@ AddCodeFile = function(id, name, content, lang) {
     });
     id = file.id;
   } else {
-    console.log(id);
     file = CodeFile.find(id);
     file.updated = updated;
     file.name = name;
