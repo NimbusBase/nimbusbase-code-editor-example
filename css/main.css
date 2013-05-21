@@ -1,0 +1,115 @@
+.welcome {
+  line-height: 1.5;
+  color: #555;
+}
+
+#name {
+	text-align: center;
+	color: #fff;
+	font-size: 3.5em;	
+}
+
+#powered {
+	margin: 0px auto;
+	display: block;
+	width: 250px;
+	margin-top: 5px;        	
+}
+
+.s_icon {
+	height: 18px;
+	margin-right: 7px;
+	display: inline;        	
+}
+
+.slide_left .bar-title, .slide_left .content {
+	-webkit-transform: translate(200px, 0px);
+	border-left: 1px solid #0f1114;
+}
+
+.content, .bar-title {
+	transition: all 0.10s ease-in-out;
+	-webkit-transition: all 0.10s ease-in-out;
+	border-left: 1px solid #0f1114;
+}
+
+.event-menu {
+	width: 100%;
+	background: #1b1e24;
+	position: relative;
+	top: 11px;
+	height: 0px;
+	/*opacity: 0;
+	-webkit-transition: opacity 0.5s ease-out; */
+	-webkit-transition: height 0.1s ease-out;
+	overflow: hidden;
+}
+
+.active .event-menu {
+	height: 32px;
+	display: block;
+	opacity: 1;
+}
+
+.event-menu a {
+	width: 50%;
+	display: block;
+	margin: 0px;
+	float: right;
+	text-align: center;
+	color: #fff;
+	padding-top: 5px;
+	padding-bottom: 2px;
+}
+
+.event-menu a:hover {
+	background: #22262e;
+	color: #ccc;
+}
+
+
+#jPanelMenu-menu {
+	width: 250px; 
+	z-index: 1; 
+	display: block; 
+	height: 100%;
+}
+
+#loginModal .content {
+	background-image: url('../images/back.png'); 
+	background-size: cover; 
+	background-position: center center;	
+}
+#loginModal .bg {
+	position: absolute; 
+	top: 50px; 
+	width: 94%; 
+	padding: 3%;	
+}
+#loginModal .action {
+	position: absolute; 
+	bottom: 0px; 
+	width: 94%; 
+	padding: 3%;	
+}
+
+#main-content {
+	background-image: url('../images/back.png'); 
+	background-size: cover; 
+	background-position: center center;
+}
+
+.CodeMirror.cm-s-monokai {
+	height: 100%;
+}
+.CodeMirror-gutter.CodeMirror-linenumbers {
+	border-right: 1px solid #7d7d7d;
+}
+
+#code-title {
+	width: 80%;
+	background: transparent;
+	color: #fff;
+	font-size: 20px;
+	text-align: center;
+}

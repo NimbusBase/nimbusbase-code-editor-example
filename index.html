@@ -1,64 +1,172 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8" />
+<title>NimbusBase Code Editor Example</title>
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="apple-mobile-web-app-title" content="TweetDiary" />
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="touch-icons/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="touch-icons/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon-precomposed" sizes="57x57" href="touch-icons/apple-touch-icon-57x57.png" />
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
-  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<link rel="stylesheet" type="text/css" href="css/util.css" />
 
-  <title>Nimbusbase-code-editor-example</title>
-  <meta name="description" content="demo">
+<link rel="stylesheet" type="text/css" href="css/ratchet.css" />
+<link rel="stylesheet" type="text/css" href="css/fontello.css" />
+<link rel="stylesheet" type="text/css" href="css/jpanel.css" />
+<link rel="stylesheet" type="text/css" href="js/codemirror/lib/codemirror.css">
+<link rel="stylesheet" type="text/css" href="js/codemirror/theme/monokai.css">
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-
+<script type="text/javascript" src="js/ratchet.js"></script>    
+<script type="text/javascript" src="http://nimbusbase.com/static/nimbus.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/fastclick.js"></script>
+<script type="text/javascript" src="js/codemirror/lib/codemirror.js"></script>
+<script type="text/javascript" src="js/code.js"></script>
 </head>
-
 <body>
-
-  <div class="wrapper">
-    <header>
-      <h1 class="title">Nimbusbase-code-editor-example</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">demo</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/NimbusBase/nimbusbase-code-editor-example/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/NimbusBase/nimbusbase-code-editor-example/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/NimbusBase/nimbusbase-code-editor-example" class="code">View Nimbusbase-code-editor-example on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <h1>NimbusBase-code-editor-example</h1>
-
-<p>A small HTML5 code edtior built on NimbusBase</p>
-        </article>
-      </div>
-    </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/NimbusBase" class="avatar"><img src="https://secure.gravatar.com/avatar/26f702e317612f6b5173c32df51ab69e?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/NimbusBase">NimbusBase</a> maintains <a href="https://github.com/NimbusBase/nimbusbase-code-editor-example">Nimbusbase-code-editor-example</a></p>
-
-
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/NimbusBase/nimbusbase-code-editor-example/tarball/master" class="tar">tar</a><a href="https://github.com/NimbusBase/nimbusbase-code-editor-example/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
-
   
+<nav id="jPanelMenu-menu">
+    <ul>    
+        <li><a href="javasctipt:;" onclick="newCodeFile()"><i class="icon-plus fs-16"></i>New File</a></li> 
+        <li><a href="javasctipt:;" onclick="showFileList()"><i class="icon-star fs-16"></i>Files</a></li>     
+        <li><a href="javascript:;" onclick="showLangList()"><i class="icon-star fs-16"></i>Language</a></li>
+        <li><a href="javascript:;" onclick="syncCodeFile()"><i class="icon-arrows-ccw fs-16"></i>Sync</a></li>
+        <li><a href="javascript:;" onclick="logout()"><i class="icon-logout fs-16"></i>Logout</a></li>
+    </ul>
+</nav>
+  
+<header class="bar-title">
+    <a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
+        <i class="icon-menu fs-25" ></i> 
+    </a>
+    <h1 class="title">
+        <input id="code-title" value="click here to edit file name" type="text" />
+        <input id="code-lang" type="hidden" value="javascript" />
+        <input id="code-id" type="hidden" value="0" />
+    </h1>
+    <a class="button pt-5" href="javascript:;" onclick="saveFile();">
+        <i class="icon-ok fs-25"></i> 
+    </a>
+</header>
+
+<!-- main content, code editor -->
+<div id="main-content" class="content">
+    <textarea id="code-editor">console.log("Hello World!);</textarea>
+</div>
+
+<!-- file list modal -->
+<div id="codeFileListModal" class="modal">
+    <header class="bar-title">
+        <a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
+            <i class="icon-menu fs-25" ></i> 
+        </a>
+    </header>   
+    <div class="content">       
+        <div class="content-padded bg" style="">
+            <ul id="code-file-list" class="list">
+            </ul>
+        </div>          
+    </div>      
+</div>
+
+<!-- lang list modal -->
+<div id="chooseLangModal" class="modal">
+    <header class="bar-title">
+        <a class="button menu-trigger" id="menu_button" onclick="toggleMenuPanel()">
+            <i class="icon-menu fs-25" ></i> 
+        </a>
+    </header>   
+    <div class="content">       
+        <div class="content-padded bg" style="">
+            <ul class="list">
+                <li> <a href="javascript:;" onclick="chooseLang('javascript')">javascript</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('css')">css</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('less')">less</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('erlang')">erlang</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('ruby')">ruby</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('python')">python</a></li>
+                <li> <a href="javascript:;" onclick="chooseLang('verilog')">verilog</a></li>
+            </ul>
+        </div>          
+    </div>      
+</div>
+
+<!-- login modal -->
+<div id="loginModal" class="modal active">
+    <div class="content">       
+        <div class="content-padded bg" style="">
+            <h1 id="name">Welcome</h1>
+            <img id="powered" src="images/nimbusbase_2_powered_by.png" />
+        </div>      
+        <div class="content-padded action">
+            <a class="button-block pt-15" onclick="Nimbus.Auth.authorize('Dropbox')">
+            <img class="s_icon" src="images/dropbox_icon.png" />
+            Login with Dropbox
+            </a>
+        </div>  
+    </div>      
+</div>
+
 </body>
+
+<script type="text/javascript">
+window.debug = true;
+var codeEditorConfig = {
+        lineNumbers: true,
+        matchBrackets: true,
+        mode: "javascript",
+        theme: 'monokai'
+};
+var codeMirror = null;
+
+$(function(){
+    new FastClick(document.body);
+
+    Nimbus.Auth.set_app_ready(function() {
+        if (Nimbus.Auth.authorized()) 
+        {
+            $("#loginModal").removeClass("active");
+        }
+
+        CodeFile.sync_all(); 
+    }); 
+
+    codeMirror = CodeMirror.fromTextArea(document.getElementById('code-editor'), codeEditorConfig);
+});
+
+sync_object = {
+    "GDrive": { 
+      "key": "{ app key }", 
+      "scope": "https://www.googleapis.com/auth/drive", 
+      "app_name": "{ app name }" 
+    },  
+    "Dropbox": {
+        "key": "8ckiyyrc3893vv9",
+        "secret": "916cnwhouxv7uvx",
+        "app_name": "fature-NimbusBase"
+    }
+};
+
+Nimbus.Auth.setup(sync_object);
+CodeFile =  Nimbus.Model.setup('CodeFile', ['created', 'updated', 'name', 'lang', 'content']);
+CodeFile.sync_all(); 
+Nimbus.Auth.authorized_callback = function()
+{    
+    CodeFile.sync_all();   
+}       
+
+
+</script>
+
+<script type="text/javascript" src="js/codemirror/mode/javascript/javascript.js"></script>
+<script type="text/javascript" src="js/codemirror/mode/css/css.js"></script>
+<script type="text/javascript" src="js/codemirror/mode/less/less.js"></script>
+<script type="text/javascript" src="js/codemirror/mode/erlang/erlang.js"></script>
+<script type="text/javascript" src="js/codemirror/mode/python/python.js"></script>
+<script type="text/javascript" src="js/codemirror/mode/ruby/ruby.js"></script>
+<script type="text/javascript" src="js/codemirror/mode/verilog/verilog.js"></script>
 </html>
